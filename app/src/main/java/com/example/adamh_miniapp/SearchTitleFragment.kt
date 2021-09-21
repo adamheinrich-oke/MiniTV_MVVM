@@ -1,0 +1,21 @@
+package com.example.adamh_miniapp
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import com.example.adamh_miniapp.databinding.FragmentSearchTitleBinding
+
+class SearchTitleFragment : Fragment() {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val binding = DataBindingUtil.inflate<FragmentSearchTitleBinding>(inflater,
+            R.layout.fragment_search_title,container,false)
+        return binding.root
+    }
+
+
+}
