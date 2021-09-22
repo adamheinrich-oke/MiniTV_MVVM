@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/titleFragment"
+    app:startDestination="@id/SearchTitleFragment"
     tools:context="com.example.android.navigation.SearchTitleFragment">
 
 
     <fragment
-        android:id="@+id/titleFragment"
+        android:id="@+id/SearchTitleFragment"
         android:name="com.example.adamh_miniapp.SearchTitleFragment"
         android:label="TitleFragment"
         tools:layout="@layout/fragment_search_title"
