@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 
 class SearchTitleViewModel : ViewModel() {
+
     init {
         Log.i("SearchTitleViewModel", "ViewModel created!")
     }
@@ -12,5 +13,4 @@ class SearchTitleViewModel : ViewModel() {
         super.onCleared()
         Log.i("SearchTitleViewModel", "ViewModel destroyed!")
     }
-
 }
