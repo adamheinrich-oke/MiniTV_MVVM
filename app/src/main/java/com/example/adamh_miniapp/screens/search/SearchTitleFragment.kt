@@ -12,19 +12,19 @@ import com.example.adamh_miniapp.databinding.FragmentSearchTitleBinding
 
 class SearchTitleFragment : Fragment() {
 
-    private var viewModel: SearchTitleViewModel =
-        ViewModelProvider(this).get(SearchTitleViewModel::class.java)
+    private var viewModel: SearchTitleViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding = DataBindingUtil.inflate<FragmentSearchTitleBinding>(
             inflater,
             R.layout.fragment_search_title, container, false
         )
 
+        viewModel = ViewModelProvider(this).get(SearchTitleViewModel::class.java)
         return binding.root
     }
 }
