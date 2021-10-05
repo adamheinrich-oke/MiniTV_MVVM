@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.adamh_miniapp.R
 import com.example.adamh_miniapp.databinding.FragmentSearchTitleBinding
+import com.example.adamh_miniapp.screens.di.ViewModelFactory
 
 class SearchTitleFragment : Fragment() {
 
     private var viewModel: SearchTitleViewModel? = null
+    private lateinit var viewModelFactory: ViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,8 +25,8 @@ class SearchTitleFragment : Fragment() {
             inflater,
             R.layout.fragment_search_title, container, false
         )
-
-        viewModel = ViewModelProvider(this).get(SearchTitleViewModel::class.java)
+        viewModelFactory = ViewModelFactory(SearchTitleViewModel())
+        viewModel = ViewModelProvider(this, viewModelFactory).get(SearchTitleViewModel::class.java)
         return binding.root
     }
 }
