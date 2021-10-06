@@ -3,9 +3,8 @@ package com.example.adamh_miniapp.screens.di
 import com.example.adamh_miniapp.screens.search.SearchTitleFragment
 import dagger.Component
 
-@PerSearchTitle
+@SearchTitleScope
 @Component(dependencies = [AppComponent::class])
 interface SearchTitleComponent {
     fun inject(fragment: SearchTitleFragment)
-
 }

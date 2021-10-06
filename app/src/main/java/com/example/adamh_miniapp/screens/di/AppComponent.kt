@@ -5,7 +5,6 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [ViewModelModule::class])
-
 interface AppComponent {
     fun getViewModelFactory(): ViewModelFactory
 }

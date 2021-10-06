@@ -30,7 +30,6 @@ class SearchTitleFragment : Fragment() {
             .build()
             .inject(this)
 
-
         val binding = DataBindingUtil.inflate<FragmentSearchTitleBinding>(
             inflater,
             R.layout.fragment_search_title, container, false
