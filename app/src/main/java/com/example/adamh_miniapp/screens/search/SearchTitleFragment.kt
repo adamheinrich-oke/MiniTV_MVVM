@@ -9,24 +9,33 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.adamh_miniapp.R
 import com.example.adamh_miniapp.databinding.FragmentSearchTitleBinding
+import com.example.adamh_miniapp.screens.App
+import com.example.adamh_miniapp.screens.di.DaggerSearchTitleComponent
 import com.example.adamh_miniapp.screens.di.ViewModelFactory
+import javax.inject.Inject
 
 class SearchTitleFragment : Fragment() {
 
-    private var viewModel: SearchTitleViewModel? = null
-    private lateinit var viewModelFactory: ViewModelFactory
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
+        DaggerSearchTitleComponent
+            .builder()
+            .appComponent((requireActivity().application as App).getAppComponent())
+            .build()
+            .inject(this)
+
+
         val binding = DataBindingUtil.inflate<FragmentSearchTitleBinding>(
             inflater,
             R.layout.fragment_search_title, container, false
         )
-        viewModelFactory = ViewModelFactory(SearchTitleViewModel())
-        viewModel = ViewModelProvider(this, viewModelFactory).get(SearchTitleViewModel::class.java)
+        val viewmodel = ViewModelProvider(this, viewModelFactory)[SearchTitleViewModel::class.java]
         return binding.root
     }
 }

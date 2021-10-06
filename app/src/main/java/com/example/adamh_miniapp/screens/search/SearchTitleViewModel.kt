@@ -2,8 +2,9 @@ package com.example.adamh_miniapp.screens.search
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import javax.inject.Inject
 
-class SearchTitleViewModel : ViewModel() {
+class SearchTitleViewModel @Inject constructor() : ViewModel() {
 
     init {
         Log.i("SearchTitleViewModel", "ViewModel created!")
