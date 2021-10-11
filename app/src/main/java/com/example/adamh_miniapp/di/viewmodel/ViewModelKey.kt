@@ -1,4 +1,4 @@
-package com.example.adamh_miniapp.screens.di
+package com.example.adamh_miniapp.di.viewmodel
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey
