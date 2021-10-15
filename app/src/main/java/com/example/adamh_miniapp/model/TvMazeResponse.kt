@@ -1,10 +1,11 @@
 package com.example.adamh_miniapp.model
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class TvMazeResponse(
-    val id: Int,
-    val name: String?,
-    val genres: List<String>?,
-    val image: TvMazeResponseImageUrls?
+    @SerializedName("id") val id: Int,
+    @SerializedName("name") val name: String?,
+    @SerializedName("genres") val genres: List<String>?,
+    @SerializedName("image") val imageUrls: TvMazeResponseImageUrls?,
 ) : Serializable

@@ -12,7 +12,7 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun providePlayerApi(): TvMazeApi = Retrofit.Builder()
+    fun provideTvMazeApi(): TvMazeApi = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
