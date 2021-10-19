@@ -12,7 +12,6 @@ import com.example.adamh_miniapp.screens.di.DaggerSearchTitleComponent
 import com.example.adamh_miniapp.utils.daggerViewModels
 import kotlinx.coroutines.launch
 
-
 class SearchTitleFragment : Fragment(R.layout.search_fragment) {
 
     val viewModel: SearchTitleViewModel by daggerViewModels { requireActivity() }
@@ -25,12 +24,12 @@ class SearchTitleFragment : Fragment(R.layout.search_fragment) {
             .appComponent((requireActivity().application as App).getAppComponent())
             .build()
             .inject(this)
-    }
 
         val recycleView = requireView().findViewById(R.id.recycler_view) as RecyclerView
         recycleView.setHasFixedSize(true)
         recycleView.adapter = adapter
-        viewModel.movies.observe(viewLifecycleOwner, Observer {
+        viewModel.movies.observe(viewLifecycleOwner, Observer
+        {
 
             adapter.setMovieList(it)
         })
