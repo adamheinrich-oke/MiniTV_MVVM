@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="150dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/MoviePosterImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginTop="@dimen/margin_top"
+        android:layout_marginEnd="@dimen/margin_end"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/MovieTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginTop="@dimen/textview_margin"
+        android:text="Show Title"
+        app:layout_constraintStart_toEndOf="@+id/MoviePosterImageView"
+        app:layout_constraintTop_toTopOf="@+id/MoviePosterImageView" />
+
+    <TextView
+        android:id="@+id/MovieGenreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginBottom="@dimen/textview_margin"
+        android:fontFamily="sans-serif-thin"
+        android:text="Genre"
+        android:textColor="#757575"
+        android:textSize="@dimen/genre_textview_textsize"
+        app:layout_constraintBottom_toBottomOf="@+id/MoviePosterImageView"
+        app:layout_constraintStart_toEndOf="@+id/MoviePosterImageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
