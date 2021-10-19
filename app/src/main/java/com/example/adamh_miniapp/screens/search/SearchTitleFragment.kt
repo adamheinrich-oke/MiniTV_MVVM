@@ -25,6 +25,7 @@ class SearchTitleFragment : Fragment(R.layout.search_fragment) {
             .appComponent((requireActivity().application as App).getAppComponent())
             .build()
             .inject(this)
+    }
 
         val recycleView = requireView().findViewById(R.id.recycler_view) as RecyclerView
         recycleView.setHasFixedSize(true)
