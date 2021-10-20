@@ -3,14 +3,12 @@ package com.example.adamh_miniapp.screens.search
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adamh_miniapp.R
 import com.example.adamh_miniapp.screens.App
 import com.example.adamh_miniapp.screens.di.DaggerSearchTitleComponent
 import com.example.adamh_miniapp.screens.search.adapter.TvMazeShowResponseAdapter
 import com.example.adamh_miniapp.utils.daggerViewModels
-import kotlinx.coroutines.launch
 
 class SearchTitleFragment : Fragment(R.layout.search_fragment) {
 
@@ -36,6 +34,6 @@ class SearchTitleFragment : Fragment(R.layout.search_fragment) {
             adapter.setMoviesList(it)
         }
 
-        viewModel.viewModelScope.launch { viewModel.searchMovies("star wars") }
+        viewModel.searchMovies("star wars")
     }
 }
