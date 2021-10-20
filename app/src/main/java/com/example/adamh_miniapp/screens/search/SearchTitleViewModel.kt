@@ -1,5 +1,6 @@
 package com.example.adamh_miniapp.screens.search
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.adamh_miniapp.data.TvMazeRepository
@@ -9,16 +10,15 @@ import javax.inject.Inject
 class SearchTitleViewModel @Inject constructor(
     private val api: TvMazeRepository,
 ) : ViewModel() {
-    private val currentQuery = MutableLiveData("star wars")
-    var movies = MutableLiveData<List<TvMazeShowResponse>>()
+    private val currentQuery = MutableLiveData<String>()
+    private val _moviesLiveData = MutableLiveData<List<TvMazeShowResponse>>()
+    val moviesLiveData = _moviesLiveData as LiveData<List<TvMazeShowResponse>>
 
-    suspend fun searchMovies(): MutableLiveData<List<TvMazeShowResponse>> {
-        val response = api.getApiResponse(currentQuery.value!!)
-        movies.postValue(response)
-        return movies
-    }
-
-    suspend fun searchPhotos(query: String) {
+    suspend fun searchMovies(query: String) {
         currentQuery.value = query
+        val response = currentQuery.value?.let {
+            api.getApiResponse(it)
+        }
+        _moviesLiveData.postValue(response)
     }
 }
