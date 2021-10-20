@@ -12,16 +12,13 @@ import javax.inject.Inject
 class SearchTitleViewModel @Inject constructor(
     private val api: TvMazeRepository,
 ) : ViewModel() {
-    private val currentQuery = MutableLiveData<String>()
+
     private val _moviesLiveData = MutableLiveData<List<TvMazeShowResponse>>()
     val moviesLiveData = _moviesLiveData as LiveData<List<TvMazeShowResponse>>
 
     fun searchMovies(query: String) {
         viewModelScope.launch {
-            currentQuery.value = query
-            val response = currentQuery.value?.let {
-                api.getApiResponse(it)
-            }
+            val response = api.getApiResponse(query)
             _moviesLiveData.postValue(response)
         }
     }
