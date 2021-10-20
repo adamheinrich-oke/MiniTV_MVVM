@@ -1,7 +1,8 @@
 package com.example.adamh_miniapp.model
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class TvMazeShowResponse(
-    val show: TvMazeResponse
-):Serializable
+    @SerializedName("show") val show: TvMazeResponse,
+) : Serializable
