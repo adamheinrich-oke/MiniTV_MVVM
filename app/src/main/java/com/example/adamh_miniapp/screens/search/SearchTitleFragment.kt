@@ -1,7 +1,10 @@
 package com.example.adamh_miniapp.screens.search
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adamh_miniapp.R
@@ -34,6 +37,27 @@ class SearchTitleFragment : Fragment(R.layout.search_fragment) {
             adapter.setMoviesList(it)
         }
 
-        viewModel.searchMovies("star wars")
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu, menu)
+
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != null && newText.length > 2)
+                    viewModel.searchMovies(newText)
+                else viewModel.searchMovies("")
+                return true
+            }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+        })
     }
 }
