@@ -51,7 +51,7 @@ class SearchTitleFragment : Fragment(R.layout.search_fragment) {
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null && newText.length > 2)
                     viewModel.searchMovies(newText)
-                else viewModel.searchMovies("")
+                else adapter.setMoviesList(emptyList())
                 return true
             }
 
