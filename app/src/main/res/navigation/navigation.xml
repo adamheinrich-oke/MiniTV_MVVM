@@ -8,6 +8,17 @@
     <fragment
         android:id="@+id/SearchTitleFragment"
         android:name="com.example.adamh_miniapp.screens.search.SearchTitleFragment"
-        android:label="TitleFragment"
-        tools:layout="@layout/search_fragment" />
+        tools:layout="@layout/search_fragment">
+        <action
+            android:id="@+id/action_SearchTitleFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.adamh_miniapp.screens.details.DetailsFragment"
+        tools:layout="@layout/details_fragment">
+        <argument
+            android:name="movie"
+            app:argType="com.example.adamh_miniapp.model.TvMazeShowResponse" />
+    </fragment>
 </navigation>

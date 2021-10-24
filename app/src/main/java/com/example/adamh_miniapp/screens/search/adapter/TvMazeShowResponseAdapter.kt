@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.adamh_miniapp.R
 import com.example.adamh_miniapp.model.TvMazeShowResponse
 
-class TvMazeShowResponseAdapter : RecyclerView.Adapter<TvMazeShowResponseViewHolder>() {
+class TvMazeShowResponseAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<TvMazeShowResponseViewHolder>() {
 
     var movies = mutableListOf<TvMazeShowResponse>()
 
@@ -34,6 +34,10 @@ class TvMazeShowResponseAdapter : RecyclerView.Adapter<TvMazeShowResponseViewHol
         holder.movieGenre.text = movie.show.genres.toString()
         Glide.with(holder.itemView.context).load(movie.show.imageUrls?.medium)
             .into(holder.moviePoster)
+
+        holder.itemView.setOnClickListener {
+            listener.onItemClick(movie)
+        }
     }
 
     override fun getItemCount(): Int = movies.size

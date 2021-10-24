@@ -6,17 +6,20 @@ import android.view.MenuInflater
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adamh_miniapp.R
+import com.example.adamh_miniapp.model.TvMazeShowResponse
 import com.example.adamh_miniapp.screens.App
 import com.example.adamh_miniapp.screens.di.DaggerSearchTitleComponent
+import com.example.adamh_miniapp.screens.search.adapter.OnItemClickListener
 import com.example.adamh_miniapp.screens.search.adapter.TvMazeShowResponseAdapter
 import com.example.adamh_miniapp.utils.daggerViewModels
 
-class SearchTitleFragment : Fragment(R.layout.search_fragment) {
+class SearchTitleFragment : Fragment(R.layout.search_fragment),OnItemClickListener {
 
     val viewModel: SearchTitleViewModel by daggerViewModels { requireActivity() }
-    private val adapter: TvMazeShowResponseAdapter = TvMazeShowResponseAdapter()
+    private val adapter: TvMazeShowResponseAdapter = TvMazeShowResponseAdapter(this)
     private lateinit var recyclerView: RecyclerView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,5 +62,10 @@ class SearchTitleFragment : Fragment(R.layout.search_fragment) {
                 return false
             }
         })
+    }
+
+    override fun onItemClick(movie: TvMazeShowResponse) {
+        val action = SearchTitleFragmentDirections.actionSearchTitleFragmentToDetailsFragment(movie)
+        findNavController().navigate(action)
     }
 }
