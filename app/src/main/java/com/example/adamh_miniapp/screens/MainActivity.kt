@@ -15,12 +15,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-         navController = this.findNavController(R.id.myNavHostFragment)
-    val appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController,appBarConfiguration)
+        navController = this.findNavController(R.id.myNavHostFragment)
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
-    }
+    override fun onSupportNavigateUp(): Boolean =
+        navController.navigateUp() || super.onSupportNavigateUp()
+
 }
