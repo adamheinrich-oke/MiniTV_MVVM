@@ -7,5 +7,7 @@ data class TvMazeResponse(
     @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String?,
     @SerializedName("genres") val genres: List<String>?,
+    @SerializedName("summary") val summary: String?,
+    @SerializedName("schedule") val schedule: TvMazeResponseSchedule?,
     @SerializedName("image") val imageUrls: TvMazeResponseImageUrls?,
 ) : Serializable
