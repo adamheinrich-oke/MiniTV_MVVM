@@ -1,10 +1,10 @@
 package com.example.adamh_miniapp.screens.details
 
 import android.os.Bundle
-import android.text.Html
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -28,8 +28,14 @@ class DetailsFragment : Fragment(R.layout.details_fragment) {
 
         title.text = args.movie.show.name
         showPlaytime.text =
-            "${args.movie.show.schedule?.time}  ${args.movie.show.schedule?.days.toString()}"
-        summary.text = Html.fromHtml(args.movie.show.summary)
+            "${args.movie.show.schedule?.time}  ${args.movie.show.schedule?.days?.joinToString()}"
+        summary.text =
+            args.movie.show.summary?.let {
+                HtmlCompat.fromHtml(
+                    it,
+                    HtmlCompat.FROM_HTML_MODE_LEGACY
+                )
+            }
         Glide.with(this@DetailsFragment)
             .load(args.movie.show.imageUrls?.original)
             .into(image)
