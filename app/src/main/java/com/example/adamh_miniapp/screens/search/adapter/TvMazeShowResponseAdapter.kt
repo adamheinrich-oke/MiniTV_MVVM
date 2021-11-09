@@ -8,7 +8,7 @@ import com.example.adamh_miniapp.R
 import com.example.adamh_miniapp.model.TvMazeShowResponse
 
 class TvMazeShowResponseAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<TvMazeShowResponseViewHolder>() {
-
+ // test comment
     var movies = mutableListOf<TvMazeShowResponse>()
 
     fun setMoviesList(movies: List<TvMazeShowResponse>) {
