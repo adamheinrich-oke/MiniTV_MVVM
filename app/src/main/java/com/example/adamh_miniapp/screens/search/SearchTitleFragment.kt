@@ -6,6 +6,7 @@ import android.view.MenuInflater
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adamh_miniapp.R
@@ -15,8 +16,10 @@ import com.example.adamh_miniapp.screens.di.DaggerSearchTitleComponent
 import com.example.adamh_miniapp.screens.search.adapter.OnItemClickListener
 import com.example.adamh_miniapp.screens.search.adapter.TvMazeShowResponseAdapter
 import com.example.adamh_miniapp.utils.daggerViewModels
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
-class SearchTitleFragment : Fragment(R.layout.search_fragment),OnItemClickListener {
+class SearchTitleFragment : Fragment(R.layout.search_fragment), OnItemClickListener {
 
     val viewModel: SearchTitleViewModel by daggerViewModels { requireActivity() }
     private val adapter: TvMazeShowResponseAdapter = TvMazeShowResponseAdapter(this)
@@ -35,11 +38,7 @@ class SearchTitleFragment : Fragment(R.layout.search_fragment),OnItemClickListen
             setHasFixedSize(true)
             adapter = this@SearchTitleFragment.adapter
         }
-
-        viewModel.moviesLiveData.observe(viewLifecycleOwner) {
-            adapter.setMoviesList(it)
-        }
-
+        launchMoviesFlow()
         setHasOptionsMenu(true)
     }
 
@@ -52,7 +51,7 @@ class SearchTitleFragment : Fragment(R.layout.search_fragment),OnItemClickListen
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText != null && newText.length > 2)
+                if (!newText.isNullOrBlank() && newText.length > 2)
                     viewModel.searchMovies(newText)
                 else adapter.setMoviesList(emptyList())
                 return true
@@ -67,5 +66,14 @@ class SearchTitleFragment : Fragment(R.layout.search_fragment),OnItemClickListen
     override fun onItemClick(movie: TvMazeShowResponse) {
         val action = SearchTitleFragmentDirections.actionSearchTitleFragmentToDetailsFragment(movie)
         findNavController().navigate(action)
+    }
+
+    private fun launchMoviesFlow() {
+
+        lifecycleScope.launch {
+            viewModel.moviesStateFlow.collect {
+                adapter.setMoviesList(it)
+            }
+        }
     }
 }

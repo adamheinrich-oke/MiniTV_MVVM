@@ -31,7 +31,7 @@ class TvMazeShowResponseAdapter(private val listener: OnItemClickListener) : Rec
     ) {
         val movie = movies[position]
         holder.movieTitle.text = movie.show.name
-        holder.movieGenre.text = movie.show.genres.toString()
+        holder.movieGenre.text = movie.show.genres?.joinToString()
         Glide.with(holder.itemView.context).load(movie.show.imageUrls?.medium)
             .into(holder.moviePoster)
 
