@@ -59,10 +59,10 @@ class SearchTitleFragment : Fragment(R.layout.search_fragment), OnItemClickListe
         val searchView = searchItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText != null && newText.length > 2)
+                if (newText != null && newText.length > 2) {
                     if (!newText.isNullOrBlank() && newText.length > 2)
                         viewModel.searchMovies(newText)
-                    else adapter.setMoviesList(emptyList())
+                } else adapter.setMoviesList(emptyList())
                 return true
             }
 
